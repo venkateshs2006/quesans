@@ -70,6 +70,7 @@ public class WebCrawler {
 	}
 	public String getContentByAttribute(String URL, String tag, String attribute, String attributeName) throws Exception {
 		try {
+			System.out.println("Input values :"+URL+"   :"+tag+"  :"+attribute+"  :"+attributeName);			
 			WebClient webClient = WebCrawler.getWebConnection();
 			final HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@"+attribute+"='" + attributeName + "']").get(0);
