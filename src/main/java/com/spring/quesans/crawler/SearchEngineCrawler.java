@@ -6,10 +6,10 @@ import org.apache.commons.io.FileUtils;
 
 public class SearchEngineCrawler {
 	private WebCrawler webCrawler;
-	public String getGoogleResult(String URL, String tag, String className) {
+	public String getGoogleResult(String URL, String tag,String attribute, String className) {
 		try {
 			webCrawler = new WebCrawler();
-			String divResultContent = webCrawler.getContentByClass(URL, tag, className);
+			String divResultContent = webCrawler.getContentByAttribute(URL, tag,attribute, className);
 			return divResultContent;
 		} catch (Exception e) {
 			System.out.println("Error while fetching Google content" + e.getMessage());
@@ -17,10 +17,10 @@ public class SearchEngineCrawler {
 		}
 	}
 
-	public String getWikipediaResult(String URL, String tag, String className) {
+	public String getWikipediaResult(String URL, String tag,String attribute, String className) {
 		try {
 			webCrawler = new WebCrawler();
-			String divResultContent = webCrawler.getContentByClass(URL, tag, className);
+			String divResultContent = webCrawler.getContentByAttribute(URL, tag,attribute, className);
 			return divResultContent;
 		} catch (Exception e) {
 			System.out.println("Error while fetching Wiki content" + e.getMessage());
@@ -38,7 +38,6 @@ public class SearchEngineCrawler {
 			return "Page Crawling is failed. Please contact administrator";
 		}
 	}
-
 	public String getYahooResult(String URL, String tag, String elementId) {
 		try {
 			webCrawler = new WebCrawler();
@@ -58,7 +57,8 @@ public class SearchEngineCrawler {
 			System.out.println("Error while fetching Bing content" + e.getMessage());
 			return "Page Crawling is failed. Please contact administrator";
 		}
-	}
+	}	
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String args[]) {
 		try {
@@ -69,10 +69,10 @@ public class SearchEngineCrawler {
 			File yahoo = new File("yahoo.html");
 			File duck=new File("duck.html");
 			FileUtils.writeStringToFile(google,
-					webSearchEngine.getGoogleResult("http://www.google.co.in/search?q=Father of Facebook", "div", "_RBg"));
+					webSearchEngine.getGoogleResult("http://www.google.co.in/search?q=Father of Facebook", "div","class", "_RBg"));
 			System.out.println("Google Completed");
 			FileUtils.writeStringToFile(wiki, webSearchEngine.getWikipediaResult("http://en.wikipedia.org/wiki/Larry_Page",
-					"div", "mw-body-content"));
+					"div","class", "mw-body-content"));
 			System.out.println("Wikipage Completed");
 			FileUtils.writeStringToFile(bing,
 					webSearchEngine.getBingResult("http://www.bing.com/search?q=larry+page", "div", "b_entityTP"));

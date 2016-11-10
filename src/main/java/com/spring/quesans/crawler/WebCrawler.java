@@ -68,6 +68,17 @@ public class WebCrawler {
 			return "Page Crawling is Failed. Please Contact Administrator";
 		}
 	}
+	public String getContentByAttribute(String URL, String tag, String attribute, String attributeName) throws Exception {
+		try {
+			WebClient webClient = WebCrawler.getWebConnection();
+			final HtmlPage page = webClient.getPage(URL);
+			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@"+attribute+"='" + attributeName + "']").get(0);
+			return div.asXml();
+		} catch (Exception e) {
+			System.out.println("Class based exception occured" + e.getMessage());
+			return "Page Crawling is Failed. Please Contact Administrator";
+		}
+	}
 
 	public String getContentByTagId(String URL, String tag, String elementId) throws Exception {
 		try {
