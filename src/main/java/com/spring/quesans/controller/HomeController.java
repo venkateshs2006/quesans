@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.quesans.crawler.SearchResult;
 import com.spring.quesans.dto.SearchEngine;
 import com.spring.quesans.service.SearchEngineService;
+
 @Controller
-public class GetAnswer {
+public class HomeController {
 	private SearchEngineService searchEngineService;
 
 	@Autowired(required = true)
