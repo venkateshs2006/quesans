@@ -69,7 +69,7 @@ public class SearchEngineCrawler {
 			File yahoo = new File("yahoo.html");
 			File duck=new File("duck.html");
 			FileUtils.writeStringToFile(google,
-					webSearchEngine.getGoogleResult("http://www.google.co.in/search?q=Father of Facebook", "div","class", "_RBg"));
+					webSearchEngine.getGoogleResult("http://www.google.co.in/search?q=Father+of+Facebook&safe=active", "div","class", "_Oke"));
 			System.out.println("Google Completed");
 			FileUtils.writeStringToFile(wiki, webSearchEngine.getWikipediaResult("http://en.wikipedia.org/wiki/Larry_Page",
 					"div","class", "mw-body-content"));

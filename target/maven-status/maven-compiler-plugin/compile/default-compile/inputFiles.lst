@@ -7,12 +7,11 @@ D:\code\git\quesans\src\main\java\com\spring\quesans\service\PersonService.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\daoImpl\QuesAnsDAOImpl.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\dao\QuesAnsDAO.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\dto\Person.java
-D:\code\git\quesans\src\main\java\com\spring\quesans\controller\GetQuestionController.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\daoImpl\PersonDAOImpl.java
-D:\code\git\quesans\src\main\java\com\spring\quesans\controller\GetAnswer.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\controller\QuesAnsController.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\controller\PersonController.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\daoImpl\SearchEngineDAOImpl.java
+D:\code\git\quesans\src\main\java\com\spring\quesans\controller\HomeController.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\dto\QuesAns.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\service\QuesAnsService.java
 D:\code\git\quesans\src\main\java\com\spring\quesans\crawler\WebCrawler.java

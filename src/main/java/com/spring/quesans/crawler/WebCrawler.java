@@ -22,7 +22,7 @@ public class WebCrawler {
 		WebClient webClient = new WebClient(BrowserVersion.FIREFOX_38, PROXY_HOST, PROXY_PORT);
 		DefaultCredentialsProvider cp = (DefaultCredentialsProvider) webClient.getCredentialsProvider();
 		cp.addNTLMCredentials(USERNAME, PASSWORD, PROXY_HOST, PROXY_PORT, null, DOMAIN);
-		webClient.getOptions().setThrowExceptionOnScriptError(false);
+		webClient.getOptions().setThrowExceptionOnScriptError(false);	
 		return (webClient);
 	}
 	public static WebClient getWebConnection() {
@@ -32,7 +32,7 @@ public class WebCrawler {
 		return (webClient);
 	}
 	public String getPageContent(String URL) {
-		WebClient webClient = WebCrawler.getWebConnection();
+		WebClient webClient = WebCrawler.getProxyWebConnection();
 		HtmlPage currentPage;
 		try {
 			currentPage = webClient.getPage(URL);
@@ -47,7 +47,7 @@ public class WebCrawler {
 
 	public String getContentById(String URL, String elementId) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getWebConnection();
+			WebClient webClient = WebCrawler.getProxyWebConnection();
 			final HtmlPage page = webClient.getPage(URL);
 			final HtmlDivision div = page.getHtmlElementById(elementId);
 			return div.getTextContent();
@@ -59,7 +59,7 @@ public class WebCrawler {
 
 	public String getContentByClass(String URL, String tag, String className) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getWebConnection();
+			WebClient webClient = WebCrawler.getProxyWebConnection();
 			final HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@class='" + className + "']").get(0);
 			return div.asXml();
@@ -71,7 +71,7 @@ public class WebCrawler {
 	public String getContentByAttribute(String URL, String tag, String attribute, String attributeName) throws Exception {
 		try {
 			System.out.println("Input values :"+URL+"   :"+tag+"  :"+attribute+"  :"+attributeName);			
-			WebClient webClient = WebCrawler.getWebConnection();
+			WebClient webClient = WebCrawler.getProxyWebConnection();
 			final HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@"+attribute+"='" + attributeName + "']").get(0);
 			return div.asXml();
@@ -83,7 +83,7 @@ public class WebCrawler {
 
 	public String getContentByTagId(String URL, String tag, String elementId) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getWebConnection();
+			WebClient webClient = WebCrawler.getProxyWebConnection();
 			final HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@id='" + elementId + "']").get(0);
 			return div.asXml();

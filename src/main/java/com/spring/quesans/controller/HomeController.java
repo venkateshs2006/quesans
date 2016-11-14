@@ -25,7 +25,7 @@ public class HomeController {
 		this.searchEngineService = ss;
 	}
 
-	@RequestMapping(value = "/getAnswer", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getResult(@RequestParam("question") String question, Model model) {
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
 		List<String> results = new ArrayList<String>();
