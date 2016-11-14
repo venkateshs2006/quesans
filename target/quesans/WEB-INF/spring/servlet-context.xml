@@ -42,6 +42,7 @@
 			<beans:list>
 				<beans:value>com.spring.quesans.dto.Person</beans:value>
 				<beans:value>com.spring.quesans.dto.SearchEngine</beans:value>
+				<beans:value>com.spring.quesans.dto.QuesAns</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
