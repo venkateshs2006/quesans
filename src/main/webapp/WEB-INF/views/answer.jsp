@@ -24,10 +24,9 @@
 	</tr>
 	<c:forEach items="${results}" var="result">
 		<tr>
-			<td>${result}</td>
-			
-			<td><a href="<c:url value='/edit/${result}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${result}' />" >Delete</a></td>
+			<td>${result}</td>			
+			<td><a href="<c:url value='/edit/1' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/1' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>
