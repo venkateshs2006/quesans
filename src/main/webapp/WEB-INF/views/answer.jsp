@@ -18,17 +18,15 @@
 <c:if test="${!empty results}">
 	<table class="tg">
 	<tr>
-		<th width="120">SearchEngine Result</th>
-		<th width="120">Edit</th>
-		<th width="120">Delete</th>
+		<th width="120">SearchEngine Name</th>
+		<th width="120">Search Engine Result</th>		
 	</tr>
 	<c:forEach items="${results}" var="result">
 		<tr>
-			<td>${result}</td>			
-			<td><a href="<c:url value='/edit/1' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/1' />" >Delete</a></td>
+			<td><c:out value="${result.key}"/></td>			
+			<td><c:out value="${result.value}"/></td>			
 		</tr>
-	</c:forEach>
+	</c:forEach>	
 	</table>
 </c:if>
 </body>

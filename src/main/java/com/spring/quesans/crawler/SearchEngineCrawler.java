@@ -1,10 +1,11 @@
 package com.spring.quesans.crawler;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 public class SearchEngineCrawler {
@@ -81,6 +82,21 @@ public class SearchEngineCrawler {
 		}
 	}
 
+	public String getBingResultContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
+		webCrawler = new WebCrawler();
+		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);
+		return results == null ? "Error" : results.toString();
+	}
+	public String getYahooResultContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
+		webCrawler = new WebCrawler();
+		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);
+		return results == null ? "Error" : results.toString();
+	}
+	public String getDuckResultContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
+		webCrawler = new WebCrawler();
+		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);
+		return results == null ? "Error" : results.toString();
+	}
 	@SuppressWarnings("deprecation")
 	public static void main(String args[]) {
 		try {
@@ -108,8 +124,9 @@ public class SearchEngineCrawler {
 			 * "js-sidebar-modules"));
 			 * System.out.println("DuckDuckGo Completed");
 			 */
-			Map<String, String> htmlAttributes = new LinkedHashMap<String, String>();
+			/*Map<String, String> htmlAttributes = new LinkedHashMap<String, String>();
 			File google = new File("google.html");
+			File bing = new File("bing.html");
 			File google2A = new File("googlewithTwoAttribute.html");
 			htmlAttributes.put("class", "_Q1n");
 			htmlAttributes.put("role", "heading");
@@ -117,7 +134,46 @@ public class SearchEngineCrawler {
 					.getSearchContent("http://www.google.co.in/search?q=larry+page", "div", htmlAttributes));
 			FileUtils.writeStringToFile(google2A, webSearchEngine
 					.getGoogleResult("http://www.google.co.in/search?q=larry+page", "div", "class", "_OKe"));
-
+			FileUtils.writeStringToFile(google2A, webSearchEngine
+					.getGoogleResult("http://www.google.co.in/search?q=larry+page", "div", "class", "_OKe"));*/
+/*			File bing = new File("bing.html");
+			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
+			Map<String, String> attributes1=new LinkedHashMap<String, String>();
+			attributes1.put("class"," b_entityTitle");
+			tagWithattributes.put("h2",attributes1);
+			Map<String, String> attributes2=new LinkedHashMap<String, String>();
+			attributes2.put("class","b_entitySubTitle");
+			tagWithattributes.put("div", attributes2);
+			System.out.println(tagWithattributes.toString());
+			FileUtils.writeStringToFile(bing, webSearchEngine.getBingResultContent("http://www.bing.com/search?q=larry_page", tagWithattributes)); 
+			System.out.println("Bing Completed");
+			File yahoo = new File("yahoo.html");
+			Map<String, Map<String, String>> tagWithattributes1=new LinkedHashMap<String,Map<String,String>>();
+			Map<String, String> attributes11=new LinkedHashMap<String, String>();
+			attributes11.put("class","txt");
+			String tag1 = new String("p");
+			tagWithattributes1.put(tag1,attributes11);
+			Map<String, String> attributes12=new LinkedHashMap<String, String>();
+			attributes12.put("class","subTxt");
+			String tag2 = new String("p ");
+			tagWithattributes1.put(tag2, attributes12);
+			System.out.println(tagWithattributes1.toString());
+			FileUtils.writeStringToFile(yahoo, webSearchEngine.getYahooResultContent("http://search.yahoo.com/search?p=larry_page",tagWithattributes1));
+			System.out.println("Yahoo Completed");*/
+			Map<String, Map<String, String>> tagWithattributes2=new LinkedHashMap<String,Map<String,String>>();
+			Map<String, String> attributes21=new LinkedHashMap<String, String>();
+			attributes21.put("class","js-about-module-title module__title  ");
+			String tag21 = new String("div");
+			tagWithattributes2.put(tag21,attributes21);
+			Map<String, String> attributes22=new LinkedHashMap<String, String>();
+			attributes22.put("class","module__text js-about-module-ellipsis");
+			String tag22 = new String("div ");
+			tagWithattributes2.put(tag22, attributes22);		
+			
+			System.out.println(tagWithattributes2.toString());
+			File duck = new File("duck.html");
+			FileUtils.writeStringToFile(duck,webSearchEngine.getDuckResultContent("http://duckduckgo.com/?q=larry+page",tagWithattributes2));
+			System.out.println("Duck Completed");
 		} catch (Exception e) {
 			System.out.println("Exception occured" + e.getMessage());
 		}

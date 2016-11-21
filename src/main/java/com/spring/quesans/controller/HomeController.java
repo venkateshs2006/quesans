@@ -1,6 +1,7 @@
 package com.spring.quesans.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +36,9 @@ public class HomeController {
 	public String getResult(Model model) {
 		Map<String, String> attributes = new LinkedHashMap<String, String>();
 
-		String question = "larry+page";
+		String question = "prime+minister+of+india";
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
-		List<String> results = new ArrayList<String>();
+		Map<String,String> results = new HashMap<String, String>();
 		System.out.println("Get Result Method is executed.");
 		SearchResult sr = new SearchResult();
 		for (SearchEngine se : listSearchEngine) {
@@ -51,10 +52,10 @@ public class HomeController {
 					position++;
 				}
 				System.out.println("If condition"+attributes.toString());				
-				results.add(sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
+				results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
 						se.getResultTag(), attributes));
 			} else {
-				results.add(sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
+				results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
 						se.getResultTag(), se.getResultAttribute(), se.getResultTagID()));
 			}
 		}
