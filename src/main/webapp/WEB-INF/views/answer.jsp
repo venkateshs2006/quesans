@@ -24,7 +24,7 @@
 	<c:forEach items="${results}" var="result">
 		<tr>
 			<td><c:out value="${result.key}"/></td>			
-			<td><c:out value="${result.value}"/></td>			
+			<td>${result.value}</td>			
 		</tr>
 	</c:forEach>	
 	</table>

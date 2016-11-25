@@ -1,6 +1,5 @@
 package com.spring.quesans.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -36,7 +34,7 @@ public class HomeController {
 	public String getResult(Model model) {
 		Map<String, String> attributes = new LinkedHashMap<String, String>();
 
-		String question = "prime+minister+of+india";
+		String question = "larry+page";
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
 		Map<String,String> results = new HashMap<String, String>();
 		System.out.println("Get Result Method is executed.");
@@ -50,8 +48,7 @@ public class HomeController {
 				for (String key : attributeNames) {
 					attributes.put(key, attributeValues.get(position));
 					position++;
-				}
-				System.out.println("If condition"+attributes.toString());				
+				}							
 				results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
 						se.getResultTag(), attributes));
 			} else {
@@ -59,7 +56,7 @@ public class HomeController {
 						se.getResultTag(), se.getResultAttribute(), se.getResultTagID()));
 			}
 		}
-		model.addAttribute("results", results);
+		model.addAttribute("results", results);		
 		return "answer";
 	}
 }

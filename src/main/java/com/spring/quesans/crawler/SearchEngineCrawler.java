@@ -9,24 +9,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 public class SearchEngineCrawler {
-	private WebCrawler webCrawler;
-
-	public String getGoogleResult(String URL, String tag, String attribute, String className) {
-		try {
-			webCrawler = new WebCrawler();
-			String pageContent = webCrawler.getPageContent(URL);
-			/*
-			 * File googlePage = new File("googlePage.html");
-			 * FileUtils.writeStringToFile(googlePage,pageContent);
-			 */
-			String divResultContent = webCrawler.getContentByAttribute(URL, tag, attribute, className);
-			return divResultContent;
-		} catch (Exception e) {
-			System.out.println("Error while fetching Google content" + e.getMessage());
-			System.out.println("Page Crawling is failed. Please contact administrator");
-			return "Error Page";
-		}
-	}
+	private WebCrawler webCrawler;	
 
 	public String getWikipediaResult(String URL, String tag, String attribute, String className) {
 		try {
@@ -71,8 +54,32 @@ public class SearchEngineCrawler {
 			return "Page Crawling is failed. Please contact administrator";
 		}
 	}
+	public String getGoogleSearchContent(String URL) {
+		try {
+			webCrawler = new WebCrawler();			
+			String tag="div";
+			String attribute="class";
+			String className="_OKe";
+			String divResultContent = webCrawler.getContentByAttribute(URL, tag, attribute, className);
+			return divResultContent;
+		} catch (Exception e) {
+			System.out.println("Error while fetching Google content" + e.getMessage());			
+			return "Error Page";
+		}
+	}
+	public String getGoogleSearchContent(String URL, String tag, String attribute, String className) {
+		try {
+			webCrawler = new WebCrawler();
+			String pageContent = webCrawler.getPageContent(URL);			
+			String divResultContent = webCrawler.getContentByAttribute(URL, tag, attribute, className);
+			return divResultContent;
+		} catch (Exception e) {
+			System.out.println("Error while fetching Google content" + e.getMessage());
+			return "Error Page";
+		}
+	}
 
-	public String getSearchContent(String URL, String tag, Map<String, String> attributes) {
+	public String getGoogleSearchContent(String URL, String tag, Map<String, String> attributes) {
 		try {
 			webCrawler = new WebCrawler();
 			String divResultContent = webCrawler.getContentByAttributes(URL, tag, attributes);
@@ -81,7 +88,11 @@ public class SearchEngineCrawler {
 			return "Output";
 		}
 	}
-
+	public String getGoogleSearchContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
+		webCrawler = new WebCrawler();
+		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);
+		return results == null ? "Error" : results.toString();
+	}
 	public String getBingResultContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
 		webCrawler = new WebCrawler();
 		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);

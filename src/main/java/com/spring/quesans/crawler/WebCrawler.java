@@ -118,8 +118,7 @@ public class WebCrawler {
 			WebClient webClient = WebCrawler.getProxyWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			File googlePage = new File("googlePage.html");
-			FileUtils.writeStringToFile(googlePage, page.asXml());
-			System.out.println("Tag" + tag);
+			FileUtils.writeStringToFile(googlePage, page.asXml());			
 			return extractTagContent(page, tag, checkingCondition);
 		} catch (Exception e) {
 			System.out.println("Class based exception occured" + e.getMessage());
