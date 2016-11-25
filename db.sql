@@ -1,6 +1,6 @@
-drop database quesanssystem;
-create database quesanssystem;
-USE quesanssystem;
+drop database quesans;
+create database quesans;
+USE quesans;
 
 CREATE TABLE `quesans` (
   `id` bigint(20) NOT NULL,
@@ -25,7 +25,7 @@ insert into `quesans` values (12,'What is google','Google /gu?g(?)l/ is a U.S. h
 
 select * from quesans;
 
-create table quesanssystem.SearchEngine (
+create table quesans.SearchEngine (
 `id` bigint(20) NOT NULL,
 `searchEngineName` varchar(50) DEFAULT NULL,
 `searchEngineURL` varchar(150) DEFAULT NULL,
