@@ -54,7 +54,7 @@ public class SearchResult {
 			String tag1 = new String("div");
 			tagWithattributes.put(tag1,attributes1);
 			Map<String, String> attributes2=new LinkedHashMap<String, String>();
-			attributes2.put("class","module__text js-about-module-ellipsis");
+			attributes2.put("class","module__text");
 			String tag2 = new String("div ");
 			tagWithattributes.put(tag2, attributes2);
 			return webSearchEngine.getBingResultContent(URL, tagWithattributes);
