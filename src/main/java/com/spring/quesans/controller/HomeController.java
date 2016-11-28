@@ -33,28 +33,14 @@ public class HomeController {
 	// model) {
 	public String getResult(Model model) {
 		Map<String, String> attributes = new LinkedHashMap<String, String>();
-
 		String question = "larry+page";
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
-		Map<String,String> results = new HashMap<String, String>();
-		System.out.println("Get Result Method is executed.");
+		Map<String,String> results = new HashMap<String, String>();		
 		SearchResult sr = new SearchResult();
-		for (SearchEngine se : listSearchEngine) {
-			System.out.println(se.getSearchEngineName());
-			if (se.getResultAttribute().contains(",")) {
-				List<String> attributeNames = Lists.newArrayList(Splitter.on(',').trimResults().split(se.getResultAttribute()));
-				List<String> attributeValues = Lists.newArrayList(Splitter.on(',').trimResults().split(se.getResultTagID()));						
-				int position = 0;
-				for (String key : attributeNames) {
-					attributes.put(key, attributeValues.get(position));
-					position++;
-				}							
-				results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
-						se.getResultTag(), attributes));
-			} else {
-				results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question,
-						se.getResultTag(), se.getResultAttribute(), se.getResultTagID()));
-			}
+		System.out.println("List of Search Engine"+listSearchEngine);
+		for (SearchEngine se : listSearchEngine) {	
+			System.out.println("Search Engine :"+se.getSearchEngineName()+"   :"+ se.getSearchEngineURL() + question);
+			results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question));			
 		}
 		model.addAttribute("results", results);		
 		return "answer";

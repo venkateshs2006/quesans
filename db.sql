@@ -38,10 +38,10 @@ create table quesans.SearchEngine (
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 
-insert into searchengine values(1,"google","http://www.google.co.in/search?q=","div","class","_Oke",0,'');
-insert into searchengine values(2,"wikipedia","http://en.wikipedia.org/wiki/","div","class","mw-body-content",0,'');
-insert into searchengine values(3,"bing","http://www.bing.com/search?q=","div","class","b_entityTP",0,'');
-insert into searchengine values(4,"yahoo","http://search.yahoo.com/search?p=","div","class","right",0,'');
-insert into searchengine values(5,"duckduckgo","http://duckduckgo.com/?q=","div","class","js-about-module-title module__title",0,'');
+insert into quesans.SearchEngine values(1,"google","http://www.google.co.in/search?q=","div","class","_Oke",0,"");
+insert into quesans.SearchEngine values(2,"wikipedia","http://en.wikipedia.org/wiki/","div","class","mw-body-content",0,'');
+insert into quesans.SearchEngine values(3,"bing","http://www.bing.com/search?q=","div","class","b_entityTP",0,'');
+insert into quesans.SearchEngine values(4,"yahoo","http://search.yahoo.com/search?p=","div","class","right",0,'');
+insert into quesans.SearchEngine values(5,"duckduckgo","http://duckduckgo.com/?q=","div","class","js-about-module-title module__title",0,'');
 
 select * from searchengine;

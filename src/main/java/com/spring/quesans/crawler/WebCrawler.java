@@ -105,7 +105,7 @@ public class WebCrawler {
 
 		} catch (Exception e) {
 			System.out.println("Class based exception occured" + e.getMessage());
-			return "Exception Error";
+			return "Error";
 		}
 	}
 
@@ -122,7 +122,7 @@ public class WebCrawler {
 			return extractTagContent(page, tag, checkingCondition);
 		} catch (Exception e) {
 			System.out.println("Class based exception occured" + e.getMessage());
-			return "Exception Error";
+			return "Error";
 		}
 	}
 
@@ -134,7 +134,7 @@ public class WebCrawler {
 			return div.asXml(); 
 		} catch (Exception e) {
 			System.out.println("Class based exception occured" + e.getMessage());
-			return "Page Crawling is Failed. Please Contact Administrator";
+			return "Error";
 		}
 	}
 

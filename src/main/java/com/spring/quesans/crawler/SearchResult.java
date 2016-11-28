@@ -1,24 +1,36 @@
 package com.spring.quesans.crawler;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class SearchResult {
-	private SearchEngineCrawler webSearchEngine;
-	public String getResult(String searchEngine, String URL,String tag,String attribute,String attributeName){
-		System.out.println("Search Result Class :"+searchEngine+" :"+URL+"  :"+tag+"  :"+attribute+"  :"+attributeName);
+	private GoogleSearch googleSearch;
+	public String getResult(String searchEngine, String URL){
+		System.out.println("Search Result Class :"+searchEngine+" :"+URL);
 		if(searchEngine.equals("google")){
-			webSearchEngine= new SearchEngineCrawler();			
-			return webSearchEngine.getGoogleSearchContent(URL, tag,attribute, attributeName);
+			googleSearch= new GoogleSearch();			
+			return googleSearch.getFinalGoogleSearchResult(URL);
 			//return "Testing";
 		}
 		else if(searchEngine.equals("wikipedia")){
+			return "Error";
+		}
+		else if(searchEngine.equals("bing")){
+			return "Error";
+		}
+		else if(searchEngine.equals("yahoo")){
+			return "Error";
+		}
+		else if(searchEngine.equals("duckduckgo")){
+			return "Error";
+		}
+		else{
+			return "Error";
+		}
+		/*else if(searchEngine.equals("wikipedia")){
 			webSearchEngine= new SearchEngineCrawler();
 			return webSearchEngine.getWikipediaResult(URL, tag,attribute, attributeName);
 		}
 		else if(searchEngine.equals("bing")){
-			/*webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			webSearchEngine= new SearchEngineCrawler();
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -30,8 +42,8 @@ public class SearchResult {
 			return webSearchEngine.getBingResultContent(URL, tagWithattributes);
 		}
 		else if(searchEngine.equals("yahoo")){
-			/*webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			//return "Testing";
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -45,8 +57,8 @@ public class SearchResult {
 			return webSearchEngine.getBingResultContent(URL, tagWithattributes);
 		}
 		else if(searchEngine.equals("duckduckgo")){
-		/*	webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			//return "Testing";
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -85,8 +97,8 @@ public class SearchResult {
 			return webSearchEngine.getWikipediaResult(URL,"","","");
 		}
 		else if(searchEngine.equals("bing")){
-			/*webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			webSearchEngine= new SearchEngineCrawler();
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -98,8 +110,8 @@ public class SearchResult {
 			return webSearchEngine.getBingResultContent(URL, tagWithattributes);
 		}
 		else if(searchEngine.equals("yahoo")){
-			/*webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			//return "Testing";
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -113,8 +125,8 @@ public class SearchResult {
 			return webSearchEngine.getBingResultContent(URL, tagWithattributes);
 		}
 		else if(searchEngine.equals("duckduckgo")){
-		/*	webSearchEngine= new SearchEngineCrawler();
-			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);*/
+			webSearchEngine= new SearchEngineCrawler();
+			return webSearchEngine.getBingResult(URL, tag, attribute,attributeName);
 			//return "Testing";
 			Map<String, Map<String, String>> tagWithattributes=new LinkedHashMap<String,Map<String,String>>();
 			Map<String, String> attributes1=new LinkedHashMap<String, String>();
@@ -139,5 +151,6 @@ public class SearchResult {
 		else{
 			return null;
 		}
+	}*/
 	}
 }
