@@ -25,6 +25,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlHeading6;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlParagraph;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.gargoylesoftware.htmlunit.html.HtmlTable;
 
 public class WebCrawler {
 	private static final String PROXY_HOST = "campus-proxy";
@@ -108,7 +109,19 @@ public class WebCrawler {
 			return "Error";
 		}
 	}
+	public String getContentByAttribute(String URL, String tag, int tagPosition)
+			throws Exception {
+		try {
+			System.out.println("Input values :" + URL + "   :" + tag + "  :" + tagPosition);
+			WebClient webClient = WebCrawler.getProxyWebConnection();
+			HtmlPage page = webClient.getPage(URL);
+			return extractTagContentByPosition(page, tag, tagPosition);
 
+		} catch (Exception e) {
+			System.out.println("Class based exception occured" + e.getMessage());
+			return "Error";
+		}
+	}
 	public String getContentByAttributes(String URL, String tag, Map<String, String> attributes) throws Exception {
 		try {
 			// System.out.println("Input values :"+URL+" :"+tag+" :"+attribute+"
@@ -246,7 +259,47 @@ public class WebCrawler {
 			HtmlHeading6 h6 = (HtmlHeading6) page
 					.getByXPath("//" + tag + "[@" + attribute + "='" + attributeName + "']").get(0);
 			return h6.asXml();
-		} else {
+		} else if(tag.equals("table")){
+			HtmlTable table=(HtmlTable)page
+					.getByXPath("//" + tag + "[@" + attribute + "='" + attributeName + "']").get(0);
+			return table.asXml();
+		}else if(tag.equals("p")){
+			HtmlParagraph p=(HtmlParagraph)page
+					.getByXPath("//" + tag + "[@" + attribute + "='" + attributeName + "']").get(0);
+			return p.asXml();
+		}else {
+			return "Error";
+		}
+	}
+	public String extractTagContentByPosition(HtmlPage page, String tag,int tagPosition){
+		if (tag.equals("div")) {
+			HtmlDivision div = (HtmlDivision) page.getElementsByTagName("div").get(tagPosition);
+			return div.asXml();
+		} else if (tag.equals("span")) {
+			HtmlSpan span = (HtmlSpan)page.getElementsByTagName("span").get(tagPosition);
+			return span.asXml();
+		} else if (tag.equals("h1")) {
+			HtmlHeading1 h1 = (HtmlHeading1) page.getElementsByTagName("h1").get(tagPosition);
+			return h1.asXml();
+		} else if (tag.equals("h2")) {
+			HtmlHeading2 h2 = (HtmlHeading2)  page.getElementsByTagName("h2").get(tagPosition);
+			return h2.asXml();
+		} else if (tag.equals("h3")) {
+			HtmlHeading3 h3 = (HtmlHeading3)  page.getElementsByTagName("h3").get(tagPosition);
+			return h3.asXml();
+		} else if (tag.equals("h4")) {
+			HtmlHeading4 h4 = (HtmlHeading4)  page.getElementsByTagName("h4").get(tagPosition);
+			return h4.asXml();
+		} else if (tag.equals("h5")) {
+			HtmlHeading5 h5 = (HtmlHeading5)  page.getElementsByTagName("h5").get(tagPosition);
+			return h5.asXml();
+		} else if (tag.equals("h6")) {
+			HtmlHeading6 h6 = (HtmlHeading6)  page.getElementsByTagName("h6").get(tagPosition);
+			return h6.asXml();
+		} else if (tag.equals("p")) {
+			HtmlParagraph p = (HtmlParagraph) page.getElementsByTagName("p").get(tagPosition);
+			return p.asXml();
+		}else {
 			return "Error";
 		}
 	}

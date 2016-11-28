@@ -33,7 +33,7 @@ public class HomeController {
 	// model) {
 	public String getResult(Model model) {
 		Map<String, String> attributes = new LinkedHashMap<String, String>();
-		String question = "larry+page";
+		String question = "computer";
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
 		Map<String,String> results = new HashMap<String, String>();		
 		SearchResult sr = new SearchResult();
