@@ -3,7 +3,7 @@ package com.spring.quesans.crawler;
 public class SearchResult {
 	private GoogleSearch googleSearch;
 	private WikipediaSearch wikipediaSearch;
-
+    private BingSearch bingSearch;
 	public String getResult(String searchEngine, String URL) {
 		System.out.println("Search Result Class :" + searchEngine + " :" + URL);
 		if (searchEngine.equals("google")) {
@@ -14,7 +14,8 @@ public class SearchResult {
 			wikipediaSearch = new WikipediaSearch();
 			return wikipediaSearch.getFinalWikipediaResult(URL);
 		} else if (searchEngine.equals("bing")) {
-			return "Error";
+			bingSearch=new BingSearch();
+			return bingSearch.getFinalBingResultContent(URL);
 		} else if (searchEngine.equals("yahoo")) {
 			return "Error";
 		} else if (searchEngine.equals("duckduckgo")) {
