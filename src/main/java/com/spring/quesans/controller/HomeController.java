@@ -20,29 +20,10 @@ import com.spring.quesans.service.SearchEngineService;
 
 @Controller
 public class HomeController {
-	private SearchEngineService searchEngineService;
-
-	@Autowired(required = true)
-	@Qualifier(value = "searchEngineService")
-	public void setSearchEngineService(SearchEngineService ss) {
-		this.searchEngineService = ss;
-	}
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// public String getResult(@RequestParam("question") String question, Model
 	// model) {
 	public String getResult(Model model) {
-		Map<String, String> attributes = new LinkedHashMap<String, String>();
-		String question = "computer";
-		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
-		Map<String,String> results = new HashMap<String, String>();		
-		SearchResult sr = new SearchResult();
-		System.out.println("List of Search Engine"+listSearchEngine);
-		for (SearchEngine se : listSearchEngine) {	
-			System.out.println("Search Engine :"+se.getSearchEngineName()+"   :"+ se.getSearchEngineURL() + question);
-			results.put(se.getSearchEngineName(),sr.getResult(se.getSearchEngineName(), se.getSearchEngineURL() + question));			
-		}
-		model.addAttribute("results", results);		
-		return "answer";
+		return "home";
 	}
 }

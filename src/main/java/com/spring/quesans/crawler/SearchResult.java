@@ -1,6 +1,11 @@
 package com.spring.quesans.crawler;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SearchResult {
+	private static final Pattern REMOVE_SCRIPT_TAGS = Pattern.compile("<script>[^>]*?</script>");
+	private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
 	private GoogleSearch googleSearch;
 	private WikipediaSearch wikipediaSearch;
     private BingSearch bingSearch;
@@ -8,14 +13,13 @@ public class SearchResult {
 		System.out.println("Search Result Class :" + searchEngine + " :" + URL);
 		if (searchEngine.equals("google")) {
 			googleSearch = new GoogleSearch();
-			return googleSearch.getFinalGoogleSearchResult(URL);
-			// return "Testing";
+			return removeTags(googleSearch.getFinalGoogleSearchResult(URL));
 		} else if (searchEngine.equals("wikipedia")) {
 			wikipediaSearch = new WikipediaSearch();
-			return wikipediaSearch.getFinalWikipediaResult(URL);
+			return removeTags(wikipediaSearch.getFinalWikipediaResult(URL));
 		} else if (searchEngine.equals("bing")) {
 			bingSearch=new BingSearch();
-			return bingSearch.getFinalBingResultContent(URL);
+			return removeTags(bingSearch.getFinalBingResultContent(URL));
 		} else if (searchEngine.equals("yahoo")) {
 			return "Error";
 		} else if (searchEngine.equals("duckduckgo")) {
@@ -126,5 +130,15 @@ public class SearchResult {
 		 * if(searchEngine.equals("google")){ return null; } else{ return null;
 		 * } }
 		 */
+	}
+
+	public static String removeTags(String string) {
+	    if (string == null || string.length() == 0) {
+	        return string;
+	    }
+	    Matcher m = REMOVE_SCRIPT_TAGS.matcher(string);
+	    String afterScriptTag=m.replaceAll("");
+	    Matcher m1 = REMOVE_TAGS.matcher(afterScriptTag);
+	    return (m1.replaceAll(""));
 	}
 }

@@ -48,10 +48,14 @@ public class WikipediaSearch {
 			if (pattern == 1) {
 				WikipediaSearch.setConfig(pattern);
 				output = getWikipediaResult(URL, tag, attribute, className);
-				
+							
 			} else if (pattern == 2) {
 				WikipediaSearch.setConfig(pattern);
 				output = getWikipediaResult(URL, tag, tagPosition);
+				System.out.println(output);
+				if(output.indexOf("<p><b>")!=0){
+					output="Error";
+				}	
 			}
 			if (!output.equals("Error")) {
 				break;

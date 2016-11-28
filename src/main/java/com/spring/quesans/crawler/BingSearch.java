@@ -12,14 +12,14 @@ public class BingSearch {
 	private static Map<String, String> attributes2;
 	private static Map<String, String> attributes1;
 	private static Map<String, Map<String, String>> tagWithattributes;
-
+	private static Map<String, String> attributes;
 	public static void setConfig(int pattern) {
-		if (pattern == 2) {
+		if (pattern == 3) {
 			tag = "div";
 			attribute = "class";
 			className = "b_entityTP";
 		}
-		if (pattern == 1) {
+		if (pattern == 2) {
 			tagWithattributes = new LinkedHashMap<String, Map<String, String>>();
 			attributes1 = new LinkedHashMap<String, String>();
 			attributes1.put("class", " b_entityTitle");
@@ -28,6 +28,12 @@ public class BingSearch {
 			attributes2.put("class", "b_entitySubTitle");
 			tagWithattributes.put("div", attributes2);
 			System.out.println(tagWithattributes.toString());
+		}
+		if (pattern == 1) {
+			tag = "li";
+			attributes = new LinkedHashMap<String, String>();
+			attributes.put("class", "b_ans b_top b_topborder");
+			//attributes.put("data-bm", "8");
 		}
 
 	}
@@ -42,7 +48,16 @@ public class BingSearch {
 			return "Page Crawling is failed. Please contact administrator";
 		}
 	}
-
+	public String getBingResultContent(String URL,String tag,  Map<String, String> attributes) {
+		try {
+		webCrawler = new WebCrawler();
+		String results = webCrawler.getContentByAttributes(URL, tag, attributes);
+		return results;
+		}
+		catch(Exception e){
+		return "Error";
+		}
+	}
 	public String getBingResultContent(String URL, Map<String, Map<String, String>> tagWithattributes) {
 		webCrawler = new WebCrawler();
 		List<String> results = webCrawler.getContentFromMorethanoneTag(URL, tagWithattributes);
@@ -52,14 +67,20 @@ public class BingSearch {
 	public String getFinalBingResultContent(String URL) {
 		String output = "";
 
-		for (int pattern = 1; pattern <= 2; pattern++) {
+		for (int pattern = 1; pattern <= 3; pattern++) {
 			if (pattern == 1) {
 				BingSearch.setConfig(pattern);
-				output = getBingResultContent(URL, tagWithattributes);
+				output = getBingResultContent(URL, tag, attributes);
+				
 			} else if (pattern == 2) {
+				BingSearch.setConfig(pattern);
+				output = getBingResultContent(URL, tagWithattributes);
+			}
+			else if (pattern == 2) {
 				BingSearch.setConfig(pattern);
 				output = getBingResultContent(URL, tag, attribute, className);
 			}
+			System.out.println("Loop :"+pattern+"  : "+output);
 			if (!output.equals("Error")) {
 				break;
 			}

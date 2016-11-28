@@ -22,6 +22,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading4;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading5;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading6;
+import com.gargoylesoftware.htmlunit.html.HtmlListItem;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlParagraph;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
@@ -221,6 +222,9 @@ public class WebCrawler {
 		} else if (tag.equals("p")) {
 			HtmlParagraph paraGraph = (HtmlParagraph) inpage.getByXPath("//" + tag + "[" + checkingCondition + "]").get(0);
 			return paraGraph.asXml();
+		} else if (tag.equals("li")) {
+			HtmlListItem li = (HtmlListItem) inpage.getByXPath("//" + tag + "[" + checkingCondition + "]").get(0);
+			return li.asXml();
 		} else {
 			return "Error";
 		}

@@ -1,49 +1,123 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
 <%@ page session="false" %>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>SearchEngine Page</title>
-	<style type="text/css">
-		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
-		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-		.tg .tg-4eph{background-color:#f9f9f9}
-	</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="resources/jquery.min.js"></script>
+<script src="resources/jquery-ui.js"></script>
+<link rel="stylesheet" href="resources/jquery-ui.css"/>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="resources/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript">
+    $(function() {      
+        $("#question").autocomplete({
+            source: function (request, response) {
+            	
+               $.getJSON("${pageContext.request.contextPath}/getMachedQuestion", {
+                    term: request.term
+                }, response);
+               
+            }
+        });        
+        $( "#tabs" ).tabs();
+        $("#mySubmit").click(function(event){
+        	var formData=$("#question").val();
+        	$('#byline').show();
+        	 $('#loading').show();
+        	 
+            $.ajax( {
+               url:'${pageContext.request.contextPath}/getAnswer',
+               type: "POST",
+               data : "question="+formData,               
+               success:function(response) { 
+            	 // alert(response);
+                  $('#myresulttabs').html(response);
+                  $('#loading').hide();
+                  $('#byline').hide();
+               },
+               error: function() {
+                   $('#myresulttabs').text('An error occurred. Please try again...');
+                   $('#loading').hide();
+                   $('#byline').hide();
+                }
+               
+            });
+         });        
+        
+    });
+    
+</script>
+<style type="text/css">
+#mySubmit{
+	font-family: 'Oleo Script', cursive;
+	font-size: 18px;
+	border:1px solid #000;
+	padding:5px 10px;
+	border:1px solid rgba(51,51,51,.5);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	
+	-webkit-box-shadow: 2px 1px 1px #aaa;
+	-moz-box-shadow: 2px 1px 1px #aaa;
+	box-shadow: 2px 1px 1px #aaa;
+	cursor:pointer;
+}
+</style>
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
 </head>
 <body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><span class="fa fa-bolt"></span><a href="#">interrogative System</a></h1>
+		</div>
+		
+	</div>
+</div>
+<div id="header-featured" style="height:10px;">
+	<div id="banner-wrapper">
+		<div id="banner" class="container">
+			<div>
+<form id="questionForm" name="questionForm" method="post">
+<input path="question" id="question" name="question" size="70"/>
+<div>				
+				<br/><input type="button" name="mySubmit" id="mySubmit" value="Get Result" />
+			</div>
+						<!--  -->
+					</form>
+</div>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="featured-wrapper">
+		<div id="featured" class="extra2 margin-btm container">
+			<div class="main-title">
+				<h2>Search Engines Results</h2>
+				<div id="loading" style="display:none;">
+  <p><img src="resources/images/ajax-loader.gif" /> Please Wait</p>
+</div>
+				<span class="byline" style="display:none;">Fetching results from net... </span> </div>	
+			<div id="myresulttabs" style="text-align: left;"/>
+		</div>
+		
+	</div>
+</div>
+</div>
 
-<h3>SearchEngine List</h3>
-<c:if test="${!empty listSearchEngine}">
-	<table class="tg">
-	<tr>
-		<th width="80">SearchEngine ID</th>
-		<th width="120">SearchEngine Name</th>
-		<th width="120">SearchEngine URL</th>
-		<th width="120">Result Tag</th>
-		<th width="120">Result Attribute</th>
-		<th width="120">Result TagId</th>
-		<th width="120">TagPosition</th>
-		<th width="120">regexDetails</th>		
-		<th width="60">Edit</th>
-		<th width="60">Delete</th>
-	</tr>
-	<c:forEach items="${listSearchEngine}" var="searchEngine">
-		<tr>
-			<td>${searchEngine.id}</td>
-			<td>${searchEngine.searchEngineName}</td>
-			<td>${searchEngine.searchEngineURL}</td>
-			<td>${searchEngine.resultTag}</td>
-			<td>${searchEngine.resultAttribute}</td>
-			<td>${searchEngine.resultTagID}</td>
-			<td>${searchEngine.tagPosition}</td>
-			<td>${searchEngine.regexDetails}</td>
-			<td><a href="<c:url value='/edit/${searchEngine.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${searchEngine.id}' />" >Delete</a></td>
-		</tr>
-	</c:forEach>
-	</table>
-</c:if>
+<div id="copyright" class="container">
+	<p>&copy; Interrogative System. All rights reserved. </p>
+</div>
 </body>
 </html>

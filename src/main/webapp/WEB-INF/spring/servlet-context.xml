@@ -40,7 +40,6 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.spring.quesans.dto.Person</beans:value>
 				<beans:value>com.spring.quesans.dto.SearchEngine</beans:value>
 				<beans:value>com.spring.quesans.dto.QuesAns</beans:value>
 			</beans:list>
@@ -55,10 +54,7 @@
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean id="personDAO" class="com.spring.quesans.daoImpl.PersonDAOImpl">
-		<beans:property name="sessionFactory"
-			ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
+
 <!-- 	<beans:bean id="searchEngineService"
 		class="com.spring.quesans.serviceImpl.SearchEngineServiceImpl">
 		<beans:property name="searchEngineDAO" ref="searchEngineDAO"></beans:property>
@@ -67,11 +63,7 @@
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean> -->
-	<beans:bean id="personService"
-		class="com.spring.quesans.serviceImpl.PersonServiceImpl">
-		<beans:property name="personDAO" ref="personDAO"></beans:property>
-	</beans:bean>
-
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<beans:bean id="transactionManager"
