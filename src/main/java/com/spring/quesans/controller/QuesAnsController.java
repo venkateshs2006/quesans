@@ -41,7 +41,10 @@ public class QuesAnsController {
 		List<String> matchQuestions = new ArrayList<String>();
 		
 		for (QuesAns quesAns : listQuesAns) {
-			if (quesAns.getQuestion().contains(name)) {
+			System.out.println(quesAns.getQuestion().toLowerCase());
+			System.out.println((quesAns.getQuestion().toLowerCase()).indexOf((name.toLowerCase())));
+			if ((quesAns.getQuestion().toLowerCase()).indexOf((name.toLowerCase()))>=0) {	
+				System.out.println("If Condition Executed");
 				matchQuestions.add(quesAns.getQuestion());
 			}
 		}

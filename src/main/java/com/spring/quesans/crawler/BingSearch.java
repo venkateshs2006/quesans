@@ -14,12 +14,12 @@ public class BingSearch {
 	private static Map<String, Map<String, String>> tagWithattributes;
 	private static Map<String, String> attributes;
 	public static void setConfig(int pattern) {
-		if (pattern == 3) {
+		if (pattern == 4) {
 			tag = "div";
 			attribute = "class";
 			className = "b_entityTP";
 		}
-		if (pattern == 2) {
+		if (pattern == 3) {
 			tagWithattributes = new LinkedHashMap<String, Map<String, String>>();
 			attributes1 = new LinkedHashMap<String, String>();
 			attributes1.put("class", " b_entityTitle");
@@ -34,6 +34,11 @@ public class BingSearch {
 			attributes = new LinkedHashMap<String, String>();
 			attributes.put("class", "b_ans b_top b_topborder");
 			//attributes.put("data-bm", "8");
+		}
+		if(pattern==2){
+			tag = "span";
+			attribute = "class";
+			className = "b_slyGridItem";
 		}
 
 	}
@@ -67,16 +72,19 @@ public class BingSearch {
 	public String getFinalBingResultContent(String URL) {
 		String output = "";
 
-		for (int pattern = 1; pattern <= 3; pattern++) {
+		for (int pattern = 1; pattern <= 4; pattern++) {
 			if (pattern == 1) {
 				BingSearch.setConfig(pattern);
 				output = getBingResultContent(URL, tag, attributes);
 				
 			} else if (pattern == 2) {
 				BingSearch.setConfig(pattern);
+				output = getBingResultContent(URL, tag, attribute, className);
+			}else if (pattern == 3) {
+				BingSearch.setConfig(pattern);
 				output = getBingResultContent(URL, tagWithattributes);
 			}
-			else if (pattern == 2) {
+			else if (pattern == 4) {
 				BingSearch.setConfig(pattern);
 				output = getBingResultContent(URL, tag, attribute, className);
 			}

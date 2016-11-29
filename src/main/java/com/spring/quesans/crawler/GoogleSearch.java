@@ -62,14 +62,18 @@ public class GoogleSearch {
 			attributes.put("class", "mod");
 			attributes.put("data-hveid", "33");
 		}
-		
 		if (pattern == 7) {
+			tag = "div";
+			attribute = "class";
+			className = "klbar";
+		}
+		if (pattern == 8) {
 			tag = "div";
 			attributes = new LinkedHashMap<String, String>();
 			attributes.put("class", "_Q1n");
 			attributes.put("role", "heading");
 		}
-		if (pattern == 8) {
+		if (pattern == 9) {
 			tag = "div";
 			attribute = "class";
 			className = "_OKe";
@@ -107,7 +111,7 @@ public class GoogleSearch {
 	public String getFinalGoogleSearchResult(String URL) {
 		String output = "";
 		
-		for (int pattern = 1; pattern <= 8; pattern++) {
+		for (int pattern = 1; pattern <= 9; pattern++) {
 			if (pattern == 1) {
 				GoogleSearch.setConfig(pattern);
 				output = getGoogleSearchContent(URL, tag, attribute, className);
@@ -130,8 +134,11 @@ public class GoogleSearch {
 				output = getGoogleSearchContent(URL, tag, attributes);
 			} else if (pattern == 7) {
 				GoogleSearch.setConfig(pattern);
-				output = getGoogleSearchContent(URL, tag, attributes);
+				output = getGoogleSearchContent(URL, tag, attribute, className);
 			} else if (pattern == 8) {
+				GoogleSearch.setConfig(pattern);
+				output = getGoogleSearchContent(URL, tag, attributes);
+			} else if (pattern == 9) {
 				GoogleSearch.setConfig(pattern);
 				output = getGoogleSearchContent(URL, tag, attribute, className);
 			}
