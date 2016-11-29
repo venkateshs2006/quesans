@@ -10,6 +10,7 @@ public interface QuesAnsService {
 	public void updateQuesAns(QuesAns qa);
 	public List<QuesAns> listQuesAnss();
 	public QuesAns getQuesAnsById(int id);
+	public QuesAns getQuesAnsByQuestion(String ques);
 	public void removeQuesAns(int id);
 	
 }

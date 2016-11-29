@@ -14,7 +14,7 @@ public class BingSearch {
 	private static Map<String, Map<String, String>> tagWithattributes;
 	private static Map<String, String> attributes;
 	public static void setConfig(int pattern) {
-		if (pattern == 4) {
+		if (pattern == 2) {
 			tag = "div";
 			attribute = "class";
 			className = "b_entityTP";
@@ -35,7 +35,7 @@ public class BingSearch {
 			attributes.put("class", "b_ans b_top b_topborder");
 			//attributes.put("data-bm", "8");
 		}
-		if(pattern==2){
+		if(pattern==4){
 			tag = "span";
 			attribute = "class";
 			className = "b_slyGridItem";

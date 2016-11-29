@@ -2,6 +2,7 @@ package com.spring.quesans.daoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -68,6 +69,18 @@ public class QuesAnsDAOImpl implements QuesAnsDAO {
 			session.delete(qa);
 		}
 		logger.info("Person deleted successfully, person details=" + qa);
+	}
+
+	@Override
+	public QuesAns getQuesAnsByQuestion(String ques) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();		
+		String hql = "from QuesAns where question = :ques";
+		Query query = session.createQuery(hql);
+		query.setString("ques",ques);
+		List<QuesAns> results = query.list();	
+		logger.info("Processed Ques Ans By Question :"+results==null?"Null Value ":results.toString());		
+		return results==null?null:results.get(0);
 	}
 
 }

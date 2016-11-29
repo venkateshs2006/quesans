@@ -56,4 +56,12 @@ public class QuesAnsServiceImpl implements QuesAnsService {
 		this.quesAnsDAO.removeQuesAns(id);
 	}
 
+	@Override
+	@Transactional
+	public QuesAns getQuesAnsByQuestion(String ques) {
+		// TODO Auto-generated method stub
+		System.out.println("Reached QuesAnsServices Question :"+ques);
+		return this.quesAnsDAO.getQuesAnsByQuestion(ques);
+	}
+
 }
