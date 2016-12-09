@@ -78,9 +78,12 @@ public class QuesAnsDAOImpl implements QuesAnsDAO {
 		String hql = "from QuesAns where question = :ques";
 		Query query = session.createQuery(hql);
 		query.setString("ques",ques);
-		List<QuesAns> results = query.list();	
-		logger.info("Processed Ques Ans By Question :"+results==null?"Null Value ":results.toString());		
-		return results==null?null:results.get(0);
+		if(query.getFetchSize()!=0){
+			return (QuesAns)query.list().get(0);
+		}
+		else{
+			return null;
+		}
 	}
 
 }
