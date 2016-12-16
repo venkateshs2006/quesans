@@ -9,6 +9,6 @@ public interface SearchEngineDAO {
 	public void addSearchEngine(SearchEngine s);
 	public void updateSearchEngine(SearchEngine s);
 	public List<SearchEngine> listSearchEngines();
-	public SearchEngine getSearchEngineById(int id);
-	public void removeSearchEngine(int id);
+	public SearchEngine getSearchEngineById(long id);
+	public void removeSearchEngine(long id);
 }

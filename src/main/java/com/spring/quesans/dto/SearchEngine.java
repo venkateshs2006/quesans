@@ -16,15 +16,11 @@ import org.springframework.stereotype.Repository;
 public class SearchEngine {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String searchEngineName;
 	private String searchEngineURL;
-	private String resultTag;
-	private String resultAttribute;
-	private String resultTagID;
-	private String tagPosition;
-	private String regexDetails;
+	
 	public long getId() {
 		return id;
 	}
@@ -43,41 +39,10 @@ public class SearchEngine {
 	public void setSearchEngineURL(String searchEngineURL) {
 		this.searchEngineURL = searchEngineURL;
 	}
-	public String getResultTag() {
-		return resultTag;
-	}
-	public void setResultTag(String resultTag) {
-		this.resultTag = resultTag;
-	}
-	public String getResultAttribute() {
-		return resultAttribute;
-	}
-	public void setResultAttribute(String resultAttribute) {
-		this.resultAttribute = resultAttribute;
-	}
-	public String getResultTagID() {
-		return resultTagID;
-	}
-	public void setResultTagID(String resultTagID) {
-		this.resultTagID = resultTagID;
-	}
-	public String getTagPosition() {
-		return tagPosition;
-	}
-	public void setTagPosition(String tagPosition) {
-		tagPosition = tagPosition;
-	}
-	public String getRegexDetails() {
-		return regexDetails;
-	}
-	public void setRegexDetails(String regexDetails) {
-		this.regexDetails = regexDetails;
-	}
 	@Override
 	public String toString() {
 		return "SearchEngine [id=" + id + ", searchEngineName=" + searchEngineName + ", searchEngineURL="
-				+ searchEngineURL + ", resultTag=" + resultTag + ", resultAttribute=" + resultAttribute
-				+ ", resultTagID=" + resultTagID + ", TagPosition=" + tagPosition + ", regexDetails=" + regexDetails
-				+ "]";
-	}                                       
+				+ searchEngineURL + "]";
+	}
+	                                       
 }

@@ -28,7 +28,7 @@ public class SearchEngineDAOImpl implements SearchEngineDAO {
 	@Override
 	public void addSearchEngine(SearchEngine s) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(s);
+		session.saveOrUpdate(s);
 		logger.info("Person saved successfully, Person Details=" + s);
 
 	}
@@ -36,7 +36,7 @@ public class SearchEngineDAOImpl implements SearchEngineDAO {
 	@Override
 	public void updateSearchEngine(SearchEngine s) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(s);
+		session.saveOrUpdate(s);
 		logger.info("Person updated successfully, Person Details=" + s);
 
 	}
@@ -52,18 +52,18 @@ public class SearchEngineDAOImpl implements SearchEngineDAO {
 	}
 
 	@Override
-	public SearchEngine getSearchEngineById(int id) {
+	public SearchEngine getSearchEngineById(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		SearchEngine s = (SearchEngine) session.load(SearchEngine.class, new Integer(id));
+		SearchEngine s = (SearchEngine) session.load(SearchEngine.class, new Long(id));
 		logger.info("Person loaded successfully, Person details=" + s);
 		return s;
 	}
 
 	@Override
-	public void removeSearchEngine(int id) {
+	public void removeSearchEngine(long id) {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		SearchEngine s = (SearchEngine) session.load(SearchEngine.class, new Integer(id));
+		SearchEngine s = (SearchEngine) session.load(SearchEngine.class, new Long(id));
 		if (null != s) {
 			session.delete(s);
 		}

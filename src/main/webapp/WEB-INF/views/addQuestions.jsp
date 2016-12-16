@@ -47,7 +47,7 @@ ul{
 }
  
 li{
-    width:33.3%;
+    width:50%;
     height:30px;
     float:left;
     color:#191919;
@@ -109,9 +109,7 @@ else{
         <li class="yellow">
             <p><a href="SEIndex">List of Search Engine</a></p>
         </li>
-        <li class="red">
-            <p><a href="KEYIndex">List of Search Keyword</a></p>
-        </li>        
+               
     </ul>
 		<div id="banner-wrapper">
 			<div id="banner" class="container" style="margin-top:-130px;">
@@ -123,9 +121,9 @@ else{
 							<th colspan="2">Add Question</th>
 						</tr>
 						<tr>
-							<td><form:label path="quesid">Question ID:</form:label></td>
-							<td><form:input path="quesid"
-									value="${questionBean.quesid}" default="" /></td>
+							<td><form:label path="id">Question ID:</form:label></td>
+							<td><form:input path="id"
+									value="${questionBean.id}" default="" /></td>
 						</tr>
 						<tr>
 							<td><form:label path="question">Question:</form:label></td>
@@ -166,12 +164,12 @@ else{
 
 			<c:forEach items="${questionList}" var="questionBean">
 				<tr>
-					<td style="color:black;"><c:out value="${questionBean.quesid}" /></td>
+					<td style="color:black;"><c:out value="${questionBean.id}" /></td>
 					<td style="color:black;"><c:out value="${questionBean.question}" /></td>
 					<td style="color:black;"><c:out value="${questionBean.answer}" /></td>
 					<td align="center" style="color:black;"><b><a
-						href="QUESEdit?quesid=${questionBean.quesid}">Edit</a>
-						| <a href="QUESDelete?quesid=${questionBean.quesid}">Delete</a></b></td>
+						href="QUESEdit?id=${questionBean.id}">Edit</a>
+						| <a href="QUESDelete?id=${questionBean.id}">Delete</a></b></td>
 				</tr>
 			</c:forEach>
 		</table>

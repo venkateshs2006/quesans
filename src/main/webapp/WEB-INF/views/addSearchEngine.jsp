@@ -48,7 +48,7 @@ ul{
 }
  
 li{
-    width:33.3%;
+    width:50%;
     height:30px;
     float:left;
     color:#191919;
@@ -110,9 +110,7 @@ else{
         <li class="yellow">
             <p><a href="SEIndex">List of Search Engine</a></p>
         </li>
-        <li class="red">
-            <p><a href="KEYIndex">List of Search Keyword</a></p>
-        </li>        
+       
     </ul>
 		<div id="banner-wrapper">
 			<div id="banner" class="container" style="margin-top:-130px;">
@@ -124,9 +122,9 @@ else{
 							<th colspan="2">Add Search Engine</th>
 						</tr>
 						<tr>
-							<td><form:label path="searchEngineId">Search Engine ID:</form:label></td>
-							<td><form:input path="searchEngineId"
-									value="${searchEngine.searchEngineId}" default="" /></td>
+							<td><form:label path="id">Search Engine ID:</form:label></td>
+							<td><form:input path="id"
+									value="${searchEngine.id}" default="" /></td>
 						</tr>
 						<tr>
 							<td><form:label path="searchEngineName">Search Engine Name:</form:label></td>
@@ -138,32 +136,9 @@ else{
 							<td><form:input path="searchEngineURL"
 									value="${searchEngine.searchEngineURL}" /></td>
 						</tr>
-						<tr>
-							<td><form:label path="resultTag">Result Tag:</form:label></td>
-							<td><form:input path="resultTag"
-									value="${searchEngine.resultTag}" /></td>
-						</tr>
 
-						<tr>
-							<td><form:label path="resultTagAttrbName">Result Tag AttributeName:</form:label></td>
-							<td><form:input path="resultTagAttrbName"
-									value="${searchEngine.resultTagAttrbName}" /></td>
-						</tr>
-						<tr>
-							<td><form:label path="resultTagAttrbValue">Result Tag AttributeValue:</form:label></td>
-							<td><form:input path="resultTagAttrbValue"
-									value="${searchEngine.resultTagAttrbValue}" /></td>
-						</tr>
-						<tr>
-							<td><form:label path="tagPosition">Result Tag Position:</form:label></td>
-							<td><form:input path="tagPosition"
-									value="${searchEngine.tagPosition}" default="" /></td>
-						</tr>
-						<tr>
-							<td><form:label path="regexDetails">RegEx Details:</form:label></td>
-							<td><form:input path="regexDetails"
-									value="${searchEngine.regexDetails}" /></td>
-						</tr>
+
+						
 						<tr>
 							<td  align="center"><input type="submit" value="Submit" /></td>
 							<td  align="center"><input type="reset" value="clear" /></td>
@@ -182,38 +157,29 @@ else{
 					
 	<c:if test="${!empty searchEngineList}">
 		<h3>Search Engine List</h3>
-		<table align="left" border="1"  cellspacing=0 style="border-bottom-style: solid;" class="modern">
+		<table align="center" border="1"  cellspacing=0 style="border-bottom-style: solid;" class="modern">
 			<tr style="background-color:gray;color:White;">
 				<th>Search Engine ID</th>
 				<th>Search Engine Name</th>
 				<th>Search Engine URL</th>
-				<th>Result Tag</th>
-				<th>AttributeName</th>
-				<th>AttributeValue</th>
-				<th>TagPosition</th>
-				<th>RegEx</th>
 				<th>Actions</th>
 			</tr>
 
 			<c:forEach items="${searchEngineList}" var="searchEngine">
 				<tr>
-					<td style="color:black;"><c:out value="${searchEngine.searchEngineId}" /></td>
+					<td style="color:black;"><c:out value="${searchEngine.id}" /></td>
 					<td style="color:black;"><c:out value="${searchEngine.searchEngineName}" /></td>
 					<td style="color:black;"><c:out value="${searchEngine.searchEngineURL}" /></td>
-					<td style="color:black;"><c:out value="${searchEngine.resultTag}" /></td>
-					<td style="color:black;"><c:out value="${searchEngine.resultTagAttrbName}" /></td>
-					<td style="color:black;"><c:out value="${searchEngine.resultTagAttrbValue}" /></td>
-					<td style="color:black;"><c:out value="${searchEngine.tagPosition}" /></td>
-					<td style="color:black;"><c:out value="${searchEngine.regexDetails}" /></td>
+					
 					<td align="center" style="color:black;"><b><a
-						href="SEEdit?searchEngineId=${searchEngine.searchEngineId}">Edit</a>
-						| <a href="SEDelete?searchEngineId=${searchEngine.searchEngineId}">Delete</a></b></td>
+						href="SEEdit?id=${searchEngine.id}">Edit</a>
+						| <a href="SEDelete?id=${searchEngine.id}">Delete</a></b></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 			</div>
-
+<center>
 		</div>
 	</div>
 	</div>

@@ -95,9 +95,7 @@ table[class=modern] tr:nth-child(even)		{ background-color:#fff; }
         <li class="yellow">
             <p><a href="SEIndex">List of Search Engine</a></p>
         </li>
-        <li class="red">
-            <p><a href="KEYIndex">List of Search Keyword</a></p>
-        </li>        
+               
     </ul>
 	
 		<div id="banner-wrapper">

@@ -46,11 +46,13 @@ public class AnswerController {
 		Map<String, String> results = new HashMap<String, String>();
 		SearchResult sr = new SearchResult();
 		// Our DB access
+		System.out.println("Before executing QuesAnsServices");
 		QuesAns quesAns = this.quesAnsService.getQuesAnsByQuestion(question);
 		System.out.println("Ques Ans Details :" + quesAns);
 		String answer;
 		if (quesAns == null) {
 			answer = "Error";
+			
 		} else {
 			answer = quesAns.getAnswer();
 		}

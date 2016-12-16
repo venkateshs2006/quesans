@@ -9,7 +9,7 @@ public interface SearchEngineService {
 	public void addSearchEngine(SearchEngine p);
 	public void updateSearchEngine(SearchEngine p);
 	public List<SearchEngine> listSearchEngines();
-	public SearchEngine getSearchEngineById(int id);
-	public void removeSearchEngine(int id);
+	public SearchEngine getSearchEngineById(long id);
+	public void removeSearchEngine(long id);
 	
 }

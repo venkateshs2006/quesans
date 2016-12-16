@@ -52,7 +52,9 @@ public class WebCrawler {
 	}
 
 	public String getPageContent(String URL) {
-		WebClient webClient = WebCrawler.getProxyWebConnection();
+		//With Proxy
+		//WebClient webClient = WebCrawler.getProxyWebConnection();
+		WebClient webClient = WebCrawler.getWebConnection();
 		HtmlPage currentPage;
 		try {
 			currentPage = webClient.getPage(URL);
@@ -67,7 +69,9 @@ public class WebCrawler {
 
 	public String getContentById(String URL, String elementId) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//With Proxy
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = page.getHtmlElementById(elementId);
 			return div.getTextContent();
@@ -79,7 +83,9 @@ public class WebCrawler {
 
 	public String getContentByClass(String URL, String tag, String className) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//With Proxy
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			if (tag.equals("div")) {
 				HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@class='" + className + "']").get(0);
@@ -101,7 +107,9 @@ public class WebCrawler {
 			throws Exception {
 		try {
 			System.out.println("Input values :" + URL + "   :" + tag + "  :" + attribute + "  :" + attributeName);
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//With Proxy
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			return extractTagContent(page, tag, attribute, attributeName);
 
@@ -114,7 +122,8 @@ public class WebCrawler {
 			throws Exception {
 		try {
 			System.out.println("Input values :" + URL + "   :" + tag + "  :" + tagPosition);
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			return extractTagContentByPosition(page, tag, tagPosition);
 
@@ -129,7 +138,8 @@ public class WebCrawler {
 			// :"+attributeName);
 			String checkingCondition = buildCondition(attributes);
 			System.out.println("Checking Condition :" + "//" + tag + "[" + checkingCondition + "]");
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			File googlePage = new File("googlePage.html");
 			FileUtils.writeStringToFile(googlePage, page.asXml());			
@@ -142,7 +152,8 @@ public class WebCrawler {
 
 	public String getContentByTagId(String URL, String tag, String elementId) throws Exception {
 		try {
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			HtmlDivision div = (HtmlDivision) page.getByXPath("//" + tag + "[@id='" + elementId + "']").get(0);
 			return div.asXml(); 
@@ -156,7 +167,8 @@ public class WebCrawler {
 		List<String> results = new ArrayList<String>();
 		Map<String, Map<String, String>> tagWithArributes = tagWithAttributes;
 		try {
-			WebClient webClient = WebCrawler.getProxyWebConnection();
+			//WebClient webClient = WebCrawler.getProxyWebConnection();
+			WebClient webClient = WebCrawler.getWebConnection();
 			HtmlPage page = webClient.getPage(URL);
 			for (String s : tagWithArributes.keySet()) {
 				Map<String, String> attributes = tagWithArributes.get(s);

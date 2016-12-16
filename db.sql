@@ -29,19 +29,14 @@ create table quesans.SearchEngine (
 `id` bigint(20) NOT NULL,
 `searchEngineName` varchar(50) DEFAULT NULL,
 `searchEngineURL` varchar(150) DEFAULT NULL,
-`resultTag` varchar(50) DEFAULT NULL,
-`resultAttribute` varchar(50) DEFAULT NULL,
-`resultTagID` varchar(50) DEFAULT NULL,
-`TagPosition` bigint(5) DEFAULT NULL,
-`regexDetails` varchar(50) DEFAULT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 
-insert into quesans.SearchEngine values(1,"google","http://www.google.co.in/search?q=","div","class","_Oke",0,"");
-insert into quesans.SearchEngine values(2,"wikipedia","https://en.wikipedia.org/w/index.php?search=","div","class","mw-body-content",0,'');
-insert into quesans.SearchEngine values(3,"bing","http://www.bing.com/search?q=","div","class","b_entityTP",0,'');
-insert into quesans.SearchEngine values(4,"yahoo","http://search.yahoo.com/search?p=","div","class","right",0,'');
-insert into quesans.SearchEngine values(5,"duckduckgo","http://duckduckgo.com/?q=","div","class","js-about-module-title module__title",0,'');
+insert into quesans.SearchEngine values(1,"google","http://www.google.co.in/search?q=");
+insert into quesans.SearchEngine values(2,"wikipedia","https://en.wikipedia.org/w/index.php?search=");
+insert into quesans.SearchEngine values(3,"bing","http://www.bing.com/search?q=");
+insert into quesans.SearchEngine values(4,"yahoo","http://search.yahoo.com/search?p=");
+insert into quesans.SearchEngine values(5,"duckduckgo","http://duckduckgo.com/?q=");
 
 select * from searchengine;

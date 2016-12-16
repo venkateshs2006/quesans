@@ -44,14 +44,14 @@ public class SearchEngineServiceImpl implements SearchEngineService {
 
 	@Override
 	@Transactional
-	public SearchEngine getSearchEngineById(int id) {
+	public SearchEngine getSearchEngineById(long id) {
 		// TODO Auto-generated method stub
 		return this.searchEngineDAO.getSearchEngineById(id);
 	}
 
 	@Override
 	@Transactional
-	public void removeSearchEngine(int id) {
+	public void removeSearchEngine(long id) {
 		// TODO Auto-generated method stub
 		this.searchEngineDAO.removeSearchEngine(id);
 	}

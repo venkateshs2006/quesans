@@ -29,7 +29,8 @@ public class QuesAnsDAOImpl implements QuesAnsDAO {
 	@Override
 	public void addQuesAns(QuesAns qa) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(qa);
+		System.out.println(qa.toString());
+		session.saveOrUpdate(qa);
 		logger.info("Person saved successfully, Person Details=" + qa);
 
 	}
@@ -37,7 +38,7 @@ public class QuesAnsDAOImpl implements QuesAnsDAO {
 	@Override
 	public void updateQuesAns(QuesAns qa) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(qa);
+		session.saveOrUpdate(qa);
 		logger.info("Person updated successfully, Person Details=" + qa);
 
 	}

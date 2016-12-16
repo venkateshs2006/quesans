@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class QuesAns {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String question;
 	private String answer;

@@ -1,16 +1,21 @@
 package com.spring.quesans.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.spring.quesans.dto.QuesAns;
@@ -53,5 +58,53 @@ public class QuesAnsController {
 		Gson gson = new Gson();
 		return gson.toJson(matchQuestions);
 		// return "quesans";
+	}
+	
+	/* Admin Controller */
+	@RequestMapping(value = "/QUESSave", method = RequestMethod.POST)
+	public ModelAndView saveEmployee(@ModelAttribute("questionBean") QuesAns QuestionBean, 
+			BindingResult result) {
+		
+		QuesAns question = QuestionBean;
+		quesAnsService.addQuesAns(question);
+		System.out.println("Save method");
+		return new ModelAndView("redirect:/QUESAdd.html");
+	}
+
+	
+	@RequestMapping(value = "/QUESAdd", method = RequestMethod.GET)
+	public ModelAndView addEmployee(@ModelAttribute("questionBean")  QuesAns QuestionBean,
+			BindingResult result) {
+		System.out.println("Add method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("questionList",  quesAnsService.listQuesAnss());
+		return new ModelAndView("addQuestions", model);
+	}
+	
+	@RequestMapping(value = "/QUESIndex", method = RequestMethod.GET)
+	public ModelAndView welcome() {
+		return new ModelAndView("redirect:/QUESAdd.html");
+	}
+	
+	
+	@RequestMapping(value = "/QUESDelete", method = RequestMethod.GET)
+	public ModelAndView deleteEmployee(@ModelAttribute("questionBean")  QuesAns QuestionBean,
+			BindingResult result) {
+		
+		quesAnsService.removeQuesAns(QuestionBean.getId());
+		Map<String, Object> model = new HashMap<String, Object>();
+		System.out.println("Delete method");
+		model.put("questionList",  quesAnsService.listQuesAnss());
+		return new ModelAndView("addQuestions", model);
+	}
+	
+	@RequestMapping(value = "/QUESEdit", method = RequestMethod.GET)
+	public ModelAndView editEmployee(@ModelAttribute("questionBean")  QuesAns QuestionBean,
+			BindingResult result) {
+		System.out.println("Edit method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("questionBean", quesAnsService.getQuesAnsById(QuestionBean.getId()));
+		model.put("questionList",  quesAnsService.listQuesAnss());
+		return new ModelAndView("addQuestions", model);
 	}
 }
