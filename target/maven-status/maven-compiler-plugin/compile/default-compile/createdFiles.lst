@@ -6,6 +6,7 @@ com\spring\quesans\controller\HomeController.class
 com\spring\quesans\controller\QuesAnsController.class
 com\spring\quesans\crawler\GoogleSearch.class
 com\spring\quesans\crawler\WebCrawler.class
+com\spring\quesans\controller\AdminSearchEngineController.class
 com\spring\quesans\crawler\YahooSearch.class
 com\spring\quesans\crawler\BingSearch.class
 com\spring\quesans\service\QuesAnsService.class
