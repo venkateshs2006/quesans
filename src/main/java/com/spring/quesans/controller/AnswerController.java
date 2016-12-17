@@ -44,6 +44,7 @@ public class AnswerController {
 		// String question = "computer";
 		List<SearchEngine> listSearchEngine = (List) this.searchEngineService.listSearchEngines();
 		Map<String, String> results = new HashMap<String, String>();
+		Map<String, String> exceptionResults = new HashMap<String, String>();
 		SearchResult sr = new SearchResult();
 		// Our DB access
 		System.out.println("Before executing QuesAnsServices");
@@ -52,27 +53,42 @@ public class AnswerController {
 		String answer;
 		if (quesAns == null) {
 			answer = "Error";
-			
+
 		} else {
 			answer = quesAns.getAnswer();
 		}
 		results.put("IGS DB", answer);
 		System.out.println("List of Search Engine" + listSearchEngine);
 		for (SearchEngine se : listSearchEngine) {
-
 			System.out.println("Search Engine :" + se.getSearchEngineName() + "   :" + se.getSearchEngineURL()
 					+ URLEncoder.encode(question, "UTF-8"));
-			results.put(se.getSearchEngineName(), sr.getResult(se.getSearchEngineName(),
-					se.getSearchEngineURL() + URLEncoder.encode(question, "UTF-8")));
+			String output = sr.getResult(se.getSearchEngineName(),
+					se.getSearchEngineURL() + URLEncoder.encode(question, "UTF-8"));
+
+			results.put(se.getSearchEngineName(), output);
+
 		}
 		// Clean Output
 		System.out.println("Before" + results.toString());
 		Iterator<String> it = results.keySet().iterator();
-
+		int index = 0;
 		while (it.hasNext()) {
+			index++;
+			String key=it.next();
+			System.out.println("Index Processed :"+index );
+			if (results.get(key).equals("Error")) {
+				if (key.equals("IGS DB")) {
+					it.remove();
+				} else {
+					for (SearchEngine se : listSearchEngine) {
+						if (se.getSearchEngineName().equals(key)) {
+							System.out.println("else");
+							results.replace(se.getSearchEngineName(), "Error", se.getSearchEngineURL() + URLEncoder.encode(question, "UTF-8"));
+						//	results.put(se.getSearchEngineName(),se.getSearchEngineURL() + URLEncoder.encode(question, "UTF-8"));
+						}
+					}
+				}
 
-			if (results.get(it.next()).equals("Error")) {
-				it.remove();
 			}
 		}
 

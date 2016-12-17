@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
+
 <%@ page session="false" %>
 <link rel="stylesheet" href="resources/jquery-ui.css">
 <script type="text/javascript" src="resources/jquery.min.js"></script>
@@ -28,7 +30,19 @@
 <c:set var="counter" value="0" scope="page" />
 <c:forEach items="${results}" var="result">
 <c:set var="counter" value="${counter + 1}" scope="page"/>
-<div id="tabs-${counter}">${result.value}</div>
+<div id="tabs-${counter}">
+<c:choose>
+    <c:when test="${fn:startsWith(result.value, 'http:')}">
+        <a href=" ${result.value}" target="_blank"> ${result.value}</a>
+    </c:when>    
+    <c:otherwise>
+      ${result.value}
+    </c:otherwise>
+</c:choose>
+
+
+
+</div>
  </c:forEach>
 </c:if>
 </div>

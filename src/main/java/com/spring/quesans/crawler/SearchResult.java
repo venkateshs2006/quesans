@@ -10,6 +10,8 @@ public class SearchResult {
 	private GoogleSearch googleSearch;
 	private WikipediaSearch wikipediaSearch;
     private BingSearch bingSearch;
+    private DuckDuckGoSearch duckSearch;
+    private YahooSearch yahooSearch;
 	public String getResult(String searchEngine, String URL) {
 		System.out.println("Search Result Class :" + searchEngine + " :" + URL);
 		if (searchEngine.equals("google")) {
@@ -22,9 +24,12 @@ public class SearchResult {
 			bingSearch=new BingSearch();
 			return removeTags(bingSearch.getFinalBingResultContent(URL));
 		} else if (searchEngine.equals("yahoo")) {
-			return "Error";
+			yahooSearch=new YahooSearch();
+			return removeTags(yahooSearch.getFinalDuckResultContent(URL));
+			
 		} else if (searchEngine.equals("duckduckgo")) {
-			return "Error";
+			duckSearch=new DuckDuckGoSearch();
+			return removeTags(duckSearch.getFinalDuckResultContent(URL));
 		} else {
 			return "Error";
 		}		
